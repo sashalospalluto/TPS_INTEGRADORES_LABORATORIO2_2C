@@ -33,11 +33,21 @@ namespace Entidades
 
         #region CONSTRUCTORES
 
+        /// <summary>
+        /// Constructor que recibe el valor numerico y el tipo de sistema en el que esta escrito el valor
+        /// </summary>
+        /// <param name="valor"> valor numerico</param>
+        /// <param name="sistema">Tipo de sistema en formato Esistema</param>
         public Numeracion (double valor, Esistema sistema) : this(valor.ToString(), sistema)
         {
 
         }
 
+        /// <summary>
+        /// Constructor que recibe el valor numerico y el tipo de sistema en el que esta escrito el valor
+        /// </summary>
+        /// <param name="valor">valor numerico en formato stribg</param>
+        /// <param name="sistema">Tipo de sistema en formato Esistema</param>
         public Numeracion (string valor, Esistema sistema)
         {
             this.InicializarValores(valor, sistema);
@@ -47,6 +57,11 @@ namespace Entidades
         
         #region METODOS
 
+        /// <summary>
+        /// Convierte un valor binario en decimal
+        /// </summary>
+        /// <param name="valor"> Valor numerico</param>
+        /// <returns>El valor numerico decimal en formato double</returns>
         private double BinarioADecimal(string valor)
         {
             string aux;
@@ -73,13 +88,20 @@ namespace Entidades
             return nroDecimal;
         }
 
+        /// <summary>
+        /// Convierte el valor numerico al sistema pasado por parametro
+        /// </summary>
+        /// <param name="sistema">Sistema numerico al que se quiere convertir</param>
+        /// <returns>El valor numerico convertido en formato string</returns>
         public string ConvertirA (Esistema sistema)
         {
             string conversion = "";
+            long aux;
             string valorAbsoluto;
-            valorAbsoluto = Math.Floor(this.valorNumerico).ToString();
+            aux = (long)Math.Floor(this.valorNumerico);
+            valorAbsoluto = aux.ToString();
             valorAbsoluto = Math.Abs(decimal.Parse(valorAbsoluto)).ToString();
-            if(valorAbsoluto != "1")
+            if(valorAbsoluto != "1" && valorAbsoluto != "0")
             {
                 if (sistema == Esistema.Binario) //verifico que se quiera convertir a binario
                 {
@@ -113,6 +135,11 @@ namespace Entidades
             return conversion;
         }
 
+        /// <summary>
+        /// Convierte el valor numerico decimal pasado por parametro INT a formato binario
+        /// </summary>
+        /// <param name="valor">valor numerico a convertir</param>
+        /// <returns>valor numerico convertido a binario</returns>
         private string DecimalABinario (int valor)
         {
             string binario = "";
@@ -136,6 +163,11 @@ namespace Entidades
             return binario;
         }
 
+        /// <summary>
+        /// Convierte el valor numerico decimal pasado por parametro STRING a formato binario
+        /// </summary>
+        /// <param name="valor">valor numerico a convertir</param>
+        /// <returns>valor numerico convertido a binario, si no se pudo convertir devuelve un mensaje de error</returns>
         private string DecimalABinario(string valor)
         {
             int binario;
@@ -149,6 +181,11 @@ namespace Entidades
             return resultado;
         }
 
+        /// <summary>
+        /// Valida si el numero pasado por parametro es binario
+        /// </summary>
+        /// <param name="valor">valor numerico</param>
+        /// <returns>true si es binario, caso contrario retorna false</returns>
         private bool EsBinario(string valor)
         {
             bool esBinario = false;
@@ -169,6 +206,11 @@ namespace Entidades
             return esBinario;
         }
 
+        /// <summary>
+        /// Inicializa los valores del objeto
+        /// </summary>
+        /// <param name="valor">valor numerico</param>
+        /// <param name="sistema">sistema del valor numerico</param>
         private void InicializarValores(string valor, Esistema sistema)
         {
             this.sistema = sistema;
@@ -181,7 +223,8 @@ namespace Entidades
                 {
                     if (sistema == Esistema.Binario)
                     {
-                        double.TryParse(this.ConvertirA(Esistema.Decimal), out this.valorNumerico);
+                        this.sistema = Esistema.Decimal;
+                        double.TryParse(this.Valor, out this.valorNumerico);
                     }
                 }
                 else
@@ -198,6 +241,12 @@ namespace Entidades
 
         #region Binarios
 
+        /// <summary>
+        /// Valida si un numero esta escrito en el sistema pasado por parametro
+        /// </summary>
+        /// <param name="sistema">tipo de sistema de tipo Esistema</param>
+        /// <param name="numeracion">valor numerico</param>
+        /// <returns>True si el numero esta escrito en el sistema, caso contrario devuelve false</returns>
         public static bool operator == (Esistema sistema, Numeracion numeracion)
         {
             bool esIgual = true;
@@ -211,11 +260,23 @@ namespace Entidades
             return esIgual;
         }
 
+        /// <summary>
+        /// Valida si un numero NO esta escrito en el sistema pasado por parametro
+        /// </summary>
+        /// <param name="sistema">tipo de sistema de tipo Esistema</param>
+        /// <param name="numeracion">valor numerico</param>
+        /// <returns>True si el numero NO esta escrito en el sistema, caso contrario devuelve false</returns>
         public static bool operator != (Esistema sistema, Numeracion numeracion)
         {
             return !(sistema==numeracion);
         }
 
+        /// <summary>
+        /// Valida que dos numeros esten escritos en el mismo sistema
+        /// </summary>
+        /// <param name="numeracion1">valor numerico</param>
+        /// <param name="numeracion2">valor numerico</param>
+        /// <returns>True si estan escritos en el mismo sistema, caso contrario devuelve false</returns>
         public static bool operator == (Numeracion numeracion1, Numeracion numeracion2)
         {
             bool esIgual = false;
@@ -226,6 +287,12 @@ namespace Entidades
             return esIgual;
         }
 
+        /// <summary>
+        /// Valida que dos numeros NO esten escritos en el mismo sistema
+        /// </summary>
+        /// <param name="numeracion1">valor numerico</param>
+        /// <param name="numeracion2">valor numerico</param>
+        /// <returns>True si NO estan escritos en el mismo sistema, caso contrario devuelve false</returns>
         public static bool operator != (Numeracion numeracion1, Numeracion numeracion2)
         {
             return !(numeracion1==numeracion2);
@@ -234,19 +301,45 @@ namespace Entidades
 
         #region Unarios
 
+        /// <summary>
+        /// Suma dos valores numericos
+        /// </summary>
+        /// <param name="numeracion1">valor numerico</param>
+        /// <param name="numeracion2">valor numerico</param>
+        /// <returns>nuevo objeto de tipo Numeracion</returns>
         public static Numeracion operator + (Numeracion numeracion1, Numeracion numeracion2)
         {
             return new Numeracion((numeracion1.valorNumerico + numeracion2.valorNumerico),Esistema.Decimal);
         }
 
+        /// <summary>
+        /// Resta dos valores numericos
+        /// </summary>
+        /// <param name="numeracion1">valor numerico</param>
+        /// <param name="numeracion2">valor numerico</param>
+        /// <returns>nuevo objeto de tipo Numeracion</returns>
         public static Numeracion operator - (Numeracion numeracion1, Numeracion numeracion2)
         {
             return new Numeracion((numeracion1.valorNumerico - numeracion2.valorNumerico), Esistema.Decimal);
         }
+
+        /// <summary>
+        /// Multiplica dos valores numericos
+        /// </summary>
+        /// <param name="numeracion1">valor numerico</param>
+        /// <param name="numeracion2">valor numerico</param>
+        /// <returns>nuevo objeto de tipo Numeracion</returns>
         public static Numeracion operator * (Numeracion numeracion1, Numeracion numeracion2)
         {
             return new Numeracion((numeracion1.valorNumerico * numeracion2.valorNumerico), Esistema.Decimal);
         }
+
+        /// <summary>
+        /// Divide dos valores numericos
+        /// </summary>
+        /// <param name="numeracion1">valor numerico</param>
+        /// <param name="numeracion2">valor numerico</param>
+        /// <returns>nuevo objeto de tipo Numeracion</returns>
         public static Numeracion operator / (Numeracion numeracion1, Numeracion numeracion2)
         {
             Numeracion numeracion;

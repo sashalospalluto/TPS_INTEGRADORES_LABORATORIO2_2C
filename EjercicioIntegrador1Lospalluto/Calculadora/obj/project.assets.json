@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\Documents\\utn\\EjercicioIntegrador1Lospalluto\\Calculadora\\Calculadora.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\Desktop\\TPS_INTEGRADORES_LABORATORIO2_2C\\EjercicioIntegrador1Lospalluto\\Calculadora\\Calculadora.csproj",
       "projectName": "Calculadora",
-      "projectPath": "C:\\Users\\usuario\\Documents\\utn\\EjercicioIntegrador1Lospalluto\\Calculadora\\Calculadora.csproj",
+      "projectPath": "C:\\Users\\usuario\\Desktop\\TPS_INTEGRADORES_LABORATORIO2_2C\\EjercicioIntegrador1Lospalluto\\Calculadora\\Calculadora.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\Documents\\utn\\EjercicioIntegrador1Lospalluto\\Calculadora\\obj\\",
+      "outputPath": "C:\\Users\\usuario\\Desktop\\TPS_INTEGRADORES_LABORATORIO2_2C\\EjercicioIntegrador1Lospalluto\\Calculadora\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\usuario\\Documents\\utn\\EjercicioIntegrador1Lospalluto\\Entidades\\Entidades.csproj": {
-              "projectPath": "C:\\Users\\usuario\\Documents\\utn\\EjercicioIntegrador1Lospalluto\\Entidades\\Entidades.csproj"
+            "C:\\Users\\usuario\\Desktop\\TPS_INTEGRADORES_LABORATORIO2_2C\\EjercicioIntegrador1Lospalluto\\Entidades\\Entidades.csproj": {
+              "projectPath": "C:\\Users\\usuario\\Desktop\\TPS_INTEGRADORES_LABORATORIO2_2C\\EjercicioIntegrador1Lospalluto\\Entidades\\Entidades.csproj"
             }
           }
         }

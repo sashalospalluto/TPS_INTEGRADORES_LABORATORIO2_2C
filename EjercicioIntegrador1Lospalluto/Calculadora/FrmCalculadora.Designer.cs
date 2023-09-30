@@ -203,7 +203,6 @@
             Text = "Calculadora de Sasha Lospalluto";
             FormClosing += FrmCalculadora_FormClosing;
             Load += FrmCalculadora_Load;
-            Click += FrmCalculadora_Click;
             grpSistema.ResumeLayout(false);
             grpSistema.PerformLayout();
             ResumeLayout(false);

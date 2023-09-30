@@ -27,11 +27,6 @@ namespace Calculadora
             }
         }
 
-        private void FrmCalculadora_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FrmCalculadora_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("¿Desea cerrar la calculadora?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -105,7 +100,10 @@ namespace Calculadora
         {
             ValidarEntradaNumerica(sender, e);
         }
-
+        
+        /// <summary>
+        /// Realiza la operacion aritmetica
+        /// </summary>
         private void SetResultado()
         {
             Numeracion numero;
@@ -118,7 +116,7 @@ namespace Calculadora
             {
                 numero = calculadora.Operar(char.Parse(cmbOperacion.SelectedItem.ToString()));
             }
-            
+
             string conversion;
             if (rbdBinario.Checked)
             {
@@ -132,6 +130,11 @@ namespace Calculadora
             lblResultado.Text = "Resultado: " + conversion;
         }
 
+        /// <summary>
+        /// Valida los caracteres que se ingresan a los textbox, solo permite numeros y una sola coma
+        /// </summary>
+        /// <param name="sender">objeto de tipo textbox</param>
+        /// <param name="e">parametro que toma los caracteres que se van escribiendo en el textbox</param>
         private void ValidarEntradaNumerica(object sender, KeyPressEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
